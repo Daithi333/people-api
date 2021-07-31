@@ -16,13 +16,10 @@ class TestValidator(unittest.TestCase):
     invalid_update_request = {"id": 7}
 
     def test_check_add_request_does_not_raise_error_when_request_valid(self):
-        result = None
         try:
             Validator.check_add_request(self.valid_add_request)
-        except Exception as e:
-            result = e
-
-        self.assertEqual(result, None)
+        except ValidationError:
+            self.fail('An Exception was raised!')
 
     def test_check_add_request_raises_error_when_keys_missing(self):
         with self.assertRaises(ValidationError):
@@ -50,14 +47,10 @@ class TestValidator(unittest.TestCase):
         self.assertEqual(sign, False)
         self.assertEqual(key, 'name')
 
-    def test_check_update_request_does_not_raise_error_when_request_valid(self):
-        result = None
         try:
             Validator.check_update_request(self.valid_add_request)
-        except Exception as e:
-            result = e
-
-        self.assertEqual(result, None)
+        except ValidationError:
+            self.fail('An Exception was raised!')
 
     def test_check_update_request_raises_error_when_keys_missing(self):
         with self.assertRaises(ValidationError):

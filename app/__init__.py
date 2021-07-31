@@ -13,7 +13,7 @@ def create_app(config_name):
     db.init_app(app)
     ma.init_app(app)
     app.register_blueprint(index)
-    app.register_blueprint(people,  url_prefix='/people')
+    app.register_blueprint(people, url_prefix='/people')
     app.register_error_handler(400, handle_bad_request)
     app.register_error_handler(404, handle_invalid_route)
     app.register_error_handler(405, handle_invalid_method)
