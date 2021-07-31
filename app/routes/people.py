@@ -10,7 +10,7 @@ people_service = PeopleService()
 def retrieve_people():
     args = request.args.get('sort')
     results = people_service.retrieve_all(args)
-    return jsonify(results)
+    return jsonify(results), 200
 
 
 @people.route('', methods=['POST'])

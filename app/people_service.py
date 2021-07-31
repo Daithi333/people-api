@@ -18,7 +18,7 @@ class PeopleService:
             should_reverse, key = Validator().check_sort_key(sort_key)
             return sorted(results, key=lambda k: k[key], reverse=should_reverse)
 
-    def add_one(self, person_data: dict) -> int:
+    def add_one(self, person_data: dict) -> dict:
         Validator().check_add_request(person_data)
         new_person = Person(**person_data)
         db.session.add(new_person)
@@ -26,7 +26,7 @@ class PeopleService:
         person = Person.query.get(new_person.id)
         return self.person_schema.dump(person)
 
-    def update_one(self, id: int, update_data: dict):
+    def update_one(self, id: int, update_data: dict) -> dict:
         Validator().check_update_request(update_data)
         person = Person.query.get(id)
 
@@ -36,7 +36,7 @@ class PeopleService:
         db.session.commit()
         return self.person_schema.dump(person)
 
-    def delete_one(self, id: int) -> (str, int):
+    def delete_one(self, id: int) -> str:
         person = Person.query.get(id)
         if person is None:
             raise ResourceNotFoundError(f'No Person found with id {id}')

@@ -16,8 +16,8 @@ class Validator:
     @staticmethod
     def check_sort_key(key: str) -> (bool, str):
         """
-        Validate sort key against regex and then check it is valid against ecpected keys
-        :param key: sort key looks like '-name' or 'name'
+        Validate sort key against regex and then check it is valid against expected keys
+        :param key: sort key looks like: '-name' or 'name' for descending or ascending sort respectively
         :return: Bool to indicate if sign (-) was found and the key without sign
         """
         if not re.search(SORT_REGEX, key):

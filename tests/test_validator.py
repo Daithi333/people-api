@@ -47,6 +47,7 @@ class TestValidator(unittest.TestCase):
         self.assertEqual(sign, False)
         self.assertEqual(key, 'name')
 
+    def test_check_update_request_does_not_raise_error_when_request_valid(self):
         try:
             Validator.check_update_request(self.valid_add_request)
         except ValidationError:
